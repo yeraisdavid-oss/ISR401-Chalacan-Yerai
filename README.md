@@ -1,59 +1,86 @@
-# Repositorio Personal ISR401 - Yerai David Chalacan Toala
+# Ingeniería de Requerimientos — ISR-401
 
-Estudiante: Yerai David Chalacan Toala
+**Estudiante:** Yerai David Chalacan Toala  
+**Universidad:** Universidad Técnica Estatal de Quevedo  
+**Nivel y paralelo:** Cuarto nivel, paralelo A  
+**Docente:** Gleiston Cicerón Guerrero Ulloa, PhD  
 
-Asignatura: Ingeniería de Requerimientos (ISR-401) - 4.º Nivel Paralelo A
+## FORM-TL-01 — Taller de tipos de requisitos
 
-Docente: Gleiston Cicerón Guerrero Ulloa, PhD
+Análisis de los 20 enunciados del caso «Plataforma de gestión
+de citas médicas» del Policlínico Ribera del Quevedo.
 
-Actividad: Taller de tipos de requisitos (FORM-TL-01)
+El documento contiene:
 
-1. Estructura del Repositorio
+- Clasificación de los 20 enunciados por tipo, producto/proceso
+  y sistema/software, con justificación.
+- Características y subcaracterísticas de calidad
+  de ISO/IEC 25010:2023.
+- Reformulación de cinco requisitos vagos con métricas,
+  unidades, umbrales y métodos de verificación.
+- Comparación de criterios con un compañero.
+- Referencias y declaración del uso de inteligencia artificial.
 
-ISR401-ChalacanYerai/
-├── FORM-TL-01/
-│   ├── main.tex           # Archivo fuente principal de LaTeX
-│   ├── main.pdf           # Documento compilado final
-│   └── referencias.bib    # Archivo de bibliografía en formato BibTeX
-└── README.md              # Instrucciones de compilación y dependencias
+## Estructura
 
+- `FORM-TL-01/main.tex`: fuente principal del documento.
+- `FORM-TL-01/referencias.bib`: referencias bibliográficas.
+- `FORM-TL-01/main.pdf`: documento compilado.
+- `README.md`: descripción e instrucciones de compilación.
 
-2. Instrucciones de Compilación y Reproducibilidad (Norma P2)
+## Herramientas y dependencias
 
-Para regenerar de forma exacta el archivo main.pdf a partir del fuente en LaTeX, siga los pasos a continuación según el entorno de compilación utilizado.
+- Una distribución LaTeX: TeX Live o MiKTeX.
+- Compilador pdfLaTeX / LuaLaTeX.
+- Paquetes: inputenc, fontenc, babel con español, geometry,
+  tabularx, booktabs, enumitem, xcolor, hyperref.
+- Estilo bibliográfico IEEE.
 
-Requisitos y Dependencias
+## Compilación local
 
-Distribución LaTeX: TeX Live 2023+ / MiKTeX / Overleaf.
+Clonar el repositorio:
 
-Compilador primario: lualatex.
+```bash
+git clone https://github.com/ChalacanYerai/ISR401-ChalacanYerai.git
+cd ISR401-ChalacanYerai/FORM-TL-01
+```
 
-Gestor bibliográfico: bibtex.
+Ejecutar los comandos en este orden:
 
-Paquetes LaTeX obligatorios: geometry, babel [spanish], booktabs, tabularx, enumitem, xcolor, hyperref.
+```bash
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```
 
-Compilación desde Línea de Comandos (Terminal)
+El resultado se genera como `main.pdf` dentro de `FORM-TL-01`.
+Los comandos deben finalizar sin errores y las citas deben
+aparecer resueltas.
 
+## Compilación en Overleaf
 
-Ejecutar la secuencia de compilación para procesar citas e índices:
+1. Crear un proyecto en blanco.
+2. Subir `main.tex` y `referencias.bib` en la misma carpeta.
+3. Seleccionar `main.tex` como documento principal.
+4. Seleccionar pdfLaTeX o LuaLaTeX como compilador.
+5. Recompilar y comprobar que las referencias estén resueltas.
+6. Descargar el resultado con el nombre `main.pdf`.
 
-pdflatex main.tex
-pdflatex main.tex
-pdflatex main.tex
+## Alcance de las propuestas
 
+Los umbrales cuantificados son propuestas académicas para
+el caso ficticio. No representan acuerdos con una organización
+real ni resultados de pruebas ejecutadas.
 
-Compilación en Overleaf
+La declaración del apoyo de inteligencia artificial se encuentra
+en el documento principal.
 
-Crear un nuevo proyecto vacío en Overleaf.
+## Entrega
 
-Subir los archivos main.tex y referencias.bib a la carpeta raíz o subcarpeta FORM-TL-01/.
+El contenido del taller se encuentra en este repositorio.
 
-Seleccionar el motor de compilación pdfLaTeX o LuaLaTeX desde el menú lateral de Overleaf.
+En el SGA se entrega únicamente un PDF de una página con
+los datos informativos y la URL completa del repositorio
+en una sola línea.
 
-Presionar Ctrl + Enter (o hacer clic en Recompilar).
-
-3. Declaración de Integridad y Declaración de IA
-
-Documento elaborado conforme a las políticas de integridad académica de la UTEQ y el Código de Ética de la ACM.
-
-Si se emplearon asistentes de IA para soporte técnico/ortográfico, la descripción explícita de su uso se encuentra consignada en la Sección 5 del documento main.pdf.
+Fecha límite actualizada según el SGA:
+31 de octubre de 2026, a las 23:59.
