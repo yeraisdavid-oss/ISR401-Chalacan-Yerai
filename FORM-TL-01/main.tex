@@ -1,0 +1,133 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    urlcolor=blue!80!black,
+    citecolor=blue!80!black
+}
+
+\setlist[itemize]{label=-}
+
+\title{\textbf{Taller de Tipos de Requisitos (FORM-TL-01)}\\ \large Ingeniería de Requerimientos (ISR-401) -- 4.\textordmasculine{} Nivel Paralelo A}
+\author{\textbf{Estudiante:} Yerai David Chalacan Toala \\ \textbf{Docente:} Gleiston Cicer\'on Guerrero Ulloa, PhD \\ gguerrero@uteq.edu.ec}
+\date{Semana 1}
+
+\begin{document}
+
+\maketitle
+
+\section{Prop\'osito y Fundamento}
+El objetivo de este taller es ejercitar la correcta identificaci\'on y clasificaci\'on de los tipos de requisitos (funcionales, de calidad y restricciones; de producto o de proceso; del sistema o del software) priorizando la norma ISO/IEC 25010:2023 \cite{iso25010}. Asimismo, se aborda la reescritura de requisitos de calidad vagos hacia expresiones cuantificables con m\'etrica y umbral verificable, tomando como base la ingenier\'ia de requisitos moderna \cite{pohl2025, iso29148}.
+
+\section{Clasificaci\'on de Enunciados del Caso}
+Se analizaron los 20 enunciados provistos para la Plataforma de Citas M\'edicas del Policl\'inico Ribera del Quevedo. La Tabla~\ref{tab:clasificacion} sintetiza la clasificaci\'on en las tres dimensiones junto con su justificaci\'on t\'ecnica en una l\'inea.
+
+\begin{table}[h!]
+\small
+\centering
+\begin{tabularx}{\textwidth}{l X X l}
+\toprule
+\textbf{C\'od.} & \textbf{Clasificaci\'on} & \textbf{Justificaci\'on} \\
+\midrule
+E01 & Funcional / Producto / Software & Especifica la funci\'on directa que permite al paciente agendar turnos disponibles. \\
+E02 & Funcional / Producto / Software & Describe una acci\'on del sistema para enviar mensajes 24h antes de la cita. \\
+E03 & Calidad (Eficiencia - Comportamiento temporal) / Producto / Software & Refiere al tiempo de respuesta y rendimiento general de la aplicaci\'on. \\
+E04 & Funcional / Producto / Software & Detalla la funci\'on que habilita al recepcionista a marcar la llegada presencial. \\
+E05 & Restricci\'on / Producto / Software & Limita el desarrollo a tecnolog\'ias espec\'ificas (Java 21 y PostgreSQL). \\
+E06 & Funcional / Producto / Software & Otorga al m\'edico la capacidad de ver su lista diaria y gestionar el estado de atenci\'on. \\
+E07 & Calidad (Seguridad - Confidencialidad) / Producto / Software & Trata la protecci\'on de los datos sensibles de los pacientes contra accesos no autorizados. \\
+E08 & Restricci\'on / Producto / Software & Exige compatibilidad con un entorno operativo m\'ovil espec\'ifico (Android 10+). \\
+E09 & Funcional / Producto / Software & Define la regla del sistema para marcar como inasistencia cancelaciones con $<$4h. \\
+E10 & Calidad (Usabilidad - Accesibilidad) / Producto / Software & Busca adaptar la experiencia a adultos mayores de 60 a\~nos. \\
+E11 & Restricci\'on / Proceso / Sistema & Fija un l\'imite estricto de tiempo (6 meses) para la finalizaci\'on del proyecto. \\
+E12 & Calidad (Seguridad - Autenticidad) / Producto / Software & Cierra sesiones inactivas tras 10 minutos para proteger la cuenta del usuario. \\
+E13 & Funcional / Producto / Sistema & Combina la lectura de c\'edula en pantalla t\'actil con la impresi\'on f\'isica de tickets. \\
+E14 & Calidad (Fiabilidad - Disponibilidad) / Producto / Software & Exige la operaci\'on continua y sin ca\'idas del servicio durante la jornada. \\
+E15 & Funcional / Producto / Software & Habilita la emisi\'on automatizada de reportes estad\'isticos para el director m\'edico. \\
+E16 & Restricci\'on / Proceso / Sistema & Dicta la meodolog\'ia de trabajo iterativa con entregas y revisiones cada 2 semanas. \\
+E17 & Restricci\'on / Producto / Software & Obliga al cumplimiento legal de la LOPDP del Ecuador \cite{lopdp2021}. \\
+E18 & Calidad (Compatibilidad - Interoperabilidad) / Producto / Software & Define la capacidad de comunicarse fluidamente con la API del sistema de facturaci\'on. \\
+E19 & Calidad (Fiabilidad - Recuperabilidad) / Producto / Sistema & Establece el tiempo m\'aximo de recuperaci\'on ($<$30 min) y cero p\'erdida de citas ante fallas. \\
+E20 & Restricci\'on / Proceso / Sistema & Impone una norma de trabajo en el equipo (code review previo al merge). \\
+\bottomrule
+\end{tabularx}
+\caption{Clasificaci\'on de los 20 enunciados del caso.}
+\label{tab:clasificacion}
+\end{table}
+
+\section{Cuantificaci\'on de Requisitos de Calidad Vagos}
+Se seleccionaron los 5 enunciados de calidad redactados en lenguaje ambiguo (E03, E07, E10, E14 y E18) y se reescribieron utilizando las m\'etricas reales del escenario del policl\'inico (300 usuarios concurrentes los lunes a las 07:00, 35\% de pacientes mayores a 60 a\~nos y tel\'efonos de gama media/baja).
+
+\subsection{E03 -- Eficiencia de desempe\~no}
+\textbf{Enunciado cuantificado:} En horas de m\'axima demanda (lunes a las 07:00 con hasta 300 usuarios conectados en simult\'aneo), el tiempo de respuesta del servidor para la b\'usqueda de turnos y confirmaci\'on de citas no exceder\'a los 2.0 segundos en dispositivos Android de gama media o baja.
+\begin{itemize}
+    \item \textbf{M\'etrica:} Tiempo de respuesta en solicitudes HTTP.
+    \item \textbf{Unidad:} Segundos.
+    \item \textbf{Umbral:} $\le 2.0$ segundos bajo 300 usuarios concurrentes.
+\end{itemize}
+
+\subsection{E07 -- Seguridad}
+\textbf{Enunciado cuantificado:} Todos los registros de salud y datos personales sensibles ser\'an almacenados con cifrado AES-256 en la base de datos PostgreSQL y transmitidos mediante protocolo TLS 1.3, cumpliendo con el est\'andar de confidencialidad de la LOPDP \cite{lopdp2021}.
+\begin{itemize}
+    \item \textbf{M\'etrica:} Est\'andar y algoritmo de cifrado implementado.
+    \item \textbf{Unidad:} Protocolo / Bits de clave.
+    \item \textbf{Umbral:} 100\% de los datos de salud cifrados con AES-256 (reposo) y TLS 1.3 (tr\'ansito).
+\end{itemize}
+
+\subsection{E10 -- Usabilidad}
+\textbf{Enunciado cuantificado:} La interfaz gr\'afica del paciente debe alinearse a las pautas WCAG 2.1 nivel AA, ofreciendo un tama\~no tipogr\'afico configurable de m\'inimo 16 pt, botones t\'actiles de al menos 48x48 px y una navegaci\'on que permita agendar una cita en no m\'as de 4 pasos para pacientes mayores de 60 a\~nos.
+\begin{itemize}
+    \item \textbf{M\'etrica:} Conformidad de accesibilidad web/m\'ovil y pasos de tarea.
+    \item \textbf{Unidad:} Nivel WCAG y n\'umero de interacciones.
+    \item \textbf{Umbral:} WCAG 2.1 AA, fuente $\ge 16$ pt y $\le 4$ pasos por transacci\'on.
+\end{itemize}
+
+\subsection{E14 -- Fiabilidad}
+\textbf{Enunciado cuantificado:} La plataforma garantizar\'a un tiempo de actividad del 99.5\% medido mensualmente dentro del horario de atenci\'on del policl\'inico (lunes a s\'abado de 07:00 a 19:00), admitiendo un acumulado de interrupciones no planificadas de m\'aximo 1.8 horas por mes.
+\begin{itemize}
+    \item \textbf{M\'etrica:} Porcentaje de disponibilidad (uptime).
+    \item \textbf{Unidad:} Porcentaje de tiempo operativo al mes.
+    \item \textbf{Umbral:} $\ge 99.5\%$ de disponibilidad durante la jornada h\'abil.
+\end{itemize}
+
+\subsection{E18 -- Compatibilidad}
+\textbf{Enunciado cuantificado:} El m\'odulo de comunicaci\'on con la API del sistema de facturaci\'on externo registrar\'a los eventos de cobro con un tiempo de procesamiento menor a 3.0 segundos y una tasa de transferencia exitosa de transacciones del 99.9\%.
+\begin{itemize}
+    \item \textbf{M\'etrica:} Latencia de integraci\'on y porcentaje de transferencias correctas.
+    \item \textbf{Unidad:} Segundos y porcentaje (\%).
+    \item \textbf{Umbral:} Latencia $\le 3.0$ s y tasa de \'exito $\ge 99.9\%$.
+\end{itemize}
+
+\section{Discusi\'on y Resoluci\'on de Discrepancias}
+Al contrastar las clasificaciones con un compa\~nero de clase, surgieron dos discrepancias principales:
+\begin{enumerate}
+    \item \textbf{Enunciado E08 (Android 10+):} Mi compa\~nero lo consideraba un requisito de calidad (Portabilidad). Tras revisar el encuadre de la materia, coincidimos en que al ser una exigencia impuesta por el entorno operativo del cliente sobre la cual no podemos decidir, act\'ua como una \textbf{Restricci\'on de Producto/Software}.
+    \item \textbf{Enunciado E13 (Quiosco con pantalla e impresora):} Hab\'ia duda sobre si asignarlo a nivel de Software o Sistema. Resolvimos catalogarlo como \textbf{Nivel de Sistema} debido a que la regla involucra directamente la interacci\'on con dispositivos de hardware f\'isico (impresora t\'ermica y terminal t\'actil).
+\end{enumerate}
+
+\section{Declaraci\'on de Uso de IA}
+\begin{itemize}
+    \item \textbf{Herramienta y Versi\'on:} Gemini 3 Flash / ChatGPT.
+    \item \textbf{Prop\'osito:} Asistencia en la resoluci\'on de advertencias de compilaci\'on del paquete \texttt{babel} y correcci\'on ortogr\'afica del texto.
+    \item \textbf{Verificaci\'on del estudiante:} Se constat\'o manualmente que la estructura del c\'odigo no tenga errores y que la clasificaci\'on responda rigurosamente a las definiciones de la ISO/IEC 25010:2023 \cite{iso25010} y la gu\'ia del docente.
+\end{itemize}
+
+\begin{thebibliography}{99}
+\bibitem{pohl2025} K. Pohl, \emph{Requirements Engineering: Fundamentals, Principles, and Techniques}, 2nd ed. Berlin, Heidelberg, Germany: Springer, 2025.
+\bibitem{iso29148} ISO/IEC/IEEE, \emph{Systems and software engineering -- Life cycle processes -- Requirements engineering}, ISO/IEC/IEEE Standard 29148:2018, 2018.
+\bibitem{iso25010} ISO/IEC, \emph{Systems and software engineering -- Systems and software quality requirements and evaluation (SQuaRE) -- Product quality model}, ISO/IEC Standard 25010:2023, 2023.
+\bibitem{lopdp2021} Asamblea Nacional del Ecuador, \emph{Ley Org\'anica de Protecci\'on de Datos Personales}, Registro Oficial, Quinto Suplemento No. 459, 26 de mayo de 2021.
+\bibitem{acm2018} Association for Computing Machinery, \emph{ACM Code of Ethics and Professional Conduct}, https://www.acm.org/code-of-ethics, 2018.
+\end{thebibliography}
+
+\end{document}
