@@ -41,8 +41,8 @@ El documento contiene:
 Clonar el repositorio:
 
 ```bash
-git clone https://github.com/ChalacanYerai/ISR401-ChalacanYerai.git
-cd ISR401-ChalacanYerai/FORM-TL-01
+git clone https://github.com/ChalacanYerai/ISR401-Chalacan-Yerai.git
+cd ISR401-Chalacan-Yerai/FORM-TL-01
 ```
 
 Ejecutar los comandos en este orden:
