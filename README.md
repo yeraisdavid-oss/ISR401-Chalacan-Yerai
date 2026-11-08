@@ -30,8 +30,7 @@ El documento contiene:
 
 ## Herramientas y dependencias
 
-- Una distribución LaTeX: TeX Live o MiKTeX.
-- Compilador pdfLaTeX / LuaLaTeX.
+- Compilador: LuaLaTeX.
 - Paquetes: inputenc, fontenc, babel con español, geometry,
   tabularx, booktabs, enumitem, xcolor, hyperref.
 - Estilo bibliográfico IEEE.
