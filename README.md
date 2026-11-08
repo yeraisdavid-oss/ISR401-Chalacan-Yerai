@@ -36,26 +36,6 @@ El documento contiene:
   tabularx, booktabs, enumitem, xcolor, hyperref.
 - Estilo bibliográfico IEEE.
 
-## Compilación local
-
-Clonar el repositorio:
-
-```bash
-git clone https://github.com/ChalacanYerai/ISR401-Chalacan-Yerai.git
-cd ISR401-Chalacan-Yerai/FORM-TL-01
-```
-
-Ejecutar los comandos en este orden:
-
-```bash
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
-```
-
-El resultado se genera como `main.pdf` dentro de `FORM-TL-01`.
-Los comandos deben finalizar sin errores y las citas deben
-aparecer resueltas.
-
 ## Compilación en Overleaf
 
 1. Crear un proyecto en blanco.
