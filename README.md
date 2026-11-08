@@ -1,4 +1,4 @@
-Repositorio Personal ISR401 - Yerai David Chalacan Toala
+# Repositorio Personal ISR401 - Yerai David Chalacan Toala
 
 Estudiante: Yerai David Chalacan Toala
 
@@ -26,7 +26,7 @@ Requisitos y Dependencias
 
 Distribución LaTeX: TeX Live 2023+ / MiKTeX / Overleaf.
 
-Compilador primario: pdflatex, xelatex o lualatex.
+Compilador primario: lualatex.
 
 Gestor bibliográfico: bibtex.
 
@@ -34,16 +34,10 @@ Paquetes LaTeX obligatorios: geometry, babel [spanish], booktabs, tabularx, enum
 
 Compilación desde Línea de Comandos (Terminal)
 
-Clonar el repositorio personal en local:
-
-git clone https://github.com/TuUsuario/ISR401-ChalacanYerai.git
-cd ISR401-ChalacanYerai/FORM-TL-01
-
 
 Ejecutar la secuencia de compilación para procesar citas e índices:
 
 pdflatex main.tex
-bibtex main
 pdflatex main.tex
 pdflatex main.tex
 
